@@ -4,9 +4,9 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 console.log(process.env.MONGODB_URI);
 
-const PORT = 3000;
-
 const app = express();
+
+app.set('port', (process.env.PORT || 3000));
 
 app.use(logger("dev"));
 
@@ -28,6 +28,12 @@ mongoose.connect(
 app.use(require("./routes/api.js"));
 app.use(require("./routes/view.js"));
 
-app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}!`);
+
+
+//For avoidong Heroku $PORT error
+app.get('/', function(request, response) {
+  var result = 'App is running'
+  response.send(result);
+}).listen(app.get('port'), function() {
+  console.log('App is running, server is listening on port ', app.get('port'));
 });
