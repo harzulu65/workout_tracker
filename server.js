@@ -2,7 +2,7 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 require("dotenv").config();
-console.log(process.env.ATLAS_URI);
+console.log(process.env.MONGODB_URI);
 
 const PORT = 3000;
 
