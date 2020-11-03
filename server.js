@@ -1,6 +1,8 @@
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+require("dotenv").config();
+console.log(process.env.ATLAS_URI);
 
 const PORT = 3000;
 
@@ -13,7 +15,7 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/workout", {
+mongoose.connect("mongodb+srv://user_atlas:KaP23G43H5JjcPm@cluster0.lhnjo.mongodb.net/workout?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useFindAndModify: false
 });
